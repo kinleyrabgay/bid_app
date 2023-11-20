@@ -3,18 +3,17 @@ part of 'router.dart';
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
     case '/':
-      // return _pageBuilder(
-      //   (_): BlocProvider(
-      //     create: (_) => sl<OnBoardingCubit>(),
-      //     child: OnBoardingScreen(),
-      //   ),
-      //   settings: settings5
-      // ),
+      final prefs = sl<SharedPreferences>();
       return _pageBuilder(
-        (_) => BlocProvider(
-          create: (_) => sl<OnBoardingCubit>(),
-          child: const OnBoardingView(),
-        ),
+        (context) {
+          if (prefs.getBool(kFirstTimerKey) ?? true) {
+            return BlocProvider(
+              create: (_) => sl<OnBoardingCubit>(),
+              child: const OnBoardingView(),
+            );
+          }
+          return Container();
+        },
         settings: settings,
       );
 
