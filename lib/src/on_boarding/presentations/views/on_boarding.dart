@@ -24,10 +24,6 @@ class _OnBoardingViewState extends State<OnBoardingView> {
   final pageController = PageController();
   OnboardingAnimation? onboardingAnimation;
 
-  // void cacheFeatures() {
-  //   context.read<SettingCubit>().cacheFeatures(featureList);
-  // }
-
   @override
   void initState() {
     super.initState();
@@ -52,9 +48,9 @@ class _OnBoardingViewState extends State<OnBoardingView> {
       child: BlocConsumer<OnBoardingCubit, OnBoardingState>(
         listener: (context, state) {
           if (state is OnBoardingStatus && !state.isFirstTimer) {
-            Navigator.pushReplacementNamed(context, '/setting');
+            Navigator.pushReplacementNamed(context, '/');
           } else if (state is UserCached) {
-            Navigator.pushReplacementNamed(context, '/setting');
+            Navigator.pushReplacementNamed(context, '/');
           }
         },
         builder: (context, state) {

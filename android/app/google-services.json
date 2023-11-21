@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "999050667905",
+    "project_id": "bidding-c5a9e",
+    "storage_bucket": "bidding-c5a9e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:999050667905:android:7077496ebe772da2246a80",
+        "android_client_info": {
+          "package_name": "com.example.bid_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDilQPCqwiSjOY_2-rRWyQHv7oyfgXal2w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:999050667905:android:12c003c79183d2cd246a80",
+        "android_client_info": {
+          "package_name": "com.example.bidding"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDilQPCqwiSjOY_2-rRWyQHv7oyfgXal2w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
