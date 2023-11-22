@@ -11,39 +11,54 @@ Route<dynamic> generateRoute(RouteSettings settings) {
               create: (_) => sl<OnBoardingCubit>(),
               child: const OnBoardingView(),
             );
+          } else if (sl<FirebaseAuth>().currentUser != null) {
+            final user = sl<FirebaseAuth>().currentUser!;
+            final localUser = LocalUserModel(
+              uid: user.uid,
+              email: user.email ?? '',
+              points: 0,
+              fullName: user.displayName ?? '',
+            );
+            context.userProvider.initUser(localUser);
+            return const HomeView();
           }
-          return Container();
+          return BlocProvider(
+            create: (_) => sl<AuthBloc>(),
+            child: const SignInView(),
+          );
         },
         settings: settings,
       );
 
-    // case SignInScreen.routeName:
-    //   return _pageBuilder(
-    //     (_) => BlocProvider(
-    //       create: (_) => sl<AuthBloc>(),
-    //       child: const SignInScreen(),
-    //     ),
-    //     settings: settings,
-    //   );
-    // case SignUpScreen.routeName:
-    //   return _pageBuilder(
-    //     (_) => BlocProvider(
-    //       create: (_) => sl<AuthBloc>(),
-    //       child: const SignUpScreen(),
-    //     ),
-    //     settings: settings,
-    //   );
-    // case Dashboard.routeName:
-    //   return _pageBuilder(
-    //     (_) => const Dashboard(),
-    //     settings: settings,
-    //   );
+    case HomeView.routeName:
+      return _pageBuilder(
+        (_) => const HomeView(),
+        settings: settings,
+      );
 
-    // case '/forgot-password':
-    //   return _pageBuilder(
-    //     (_) => const fui.ForgotPasswordScreen(),
-    //     settings: settings,
-    //   );
+    case SignInView.routeName:
+      return _pageBuilder(
+        (_) => BlocProvider(
+          create: (_) => sl<AuthBloc>(),
+          child: const SignInView(),
+        ),
+        settings: settings,
+      );
+
+    case SignUpView.routeName:
+      return _pageBuilder(
+        (_) => BlocProvider(
+          create: (_) => sl<AuthBloc>(),
+          child: const SignUpView(),
+        ),
+        settings: settings,
+      );
+
+    case '/forgot-password':
+      return _pageBuilder(
+        (_) => const fui.ForgotPasswordScreen(),
+        settings: settings,
+      );
     default:
       return _pageBuilder(
         (_) => const PageUnderConstruction(),
